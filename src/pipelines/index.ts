@@ -42,20 +42,26 @@ export const createAndInitializeSnapshot = async (
 
   // pulling out the repo (as of now)
   await onUpdate("🎗️ Pulling the image");
-  snapshot = await snapshot.setup("docker pull roydevelops/app:latest");
+  snapshot = await snapshot.setup(
+    "docker pull roydevelops/nextjs-zconnect:latest"
+  );
+
   await onUpdate("🎗️ Starting app");
 
   snapshot = await snapshot.setup(
-    "docker run -d -p 80:3000 --name app roydevelops/app:latest"
+    "docker run -d -p 80:3000 --name app roydevelops/nextjs-zconnect:latest"
   );
 
-  await onUpdate("Running docker container on port 3000");
+  await onUpdate("Running docker container");
 
-  // 3. Download the tarball
+  // 3. Download the zip file
 
-  // 4. Pack the image
+  // 4. Build the image
 
-  // 5. Return the snapshot id
+  // 5. Start the container
+  // -d -p 80:${PORT} --name userId
+
+  // 6. Send a proper success response
 
   return snapshot;
 };
@@ -71,7 +77,7 @@ export const createInstanceFromSnapshotId = async (
   // TODO: generate a service name
   const serviceUrl = await instance.exposeHttpService(
     "hello-world-example",
-    3000
+    80
   );
   console.log(serviceUrl);
 

@@ -9,7 +9,6 @@ import { format } from "date-fns";
 // Will be a background process
 export const createNewSnapshot = createHandlers(async (c) => {
   const mc = c.get("mc");
-
   // TOOD: Check if the API key is valid
 
   return streamText(c, async (stream) => {

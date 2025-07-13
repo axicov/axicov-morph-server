@@ -13,5 +13,5 @@ app.route("/v1", v1);
 export default {
   port: 8080,
   fetch: app.fetch,
-  idleTimeout: 60,
+  idleTimeout: 255,
 };
